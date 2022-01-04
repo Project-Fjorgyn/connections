@@ -3,11 +3,12 @@ import { SafeAreaView, Button } from 'react-native';
 
 import { AuthContext } from '../context/auth.context';
 
-export function SettingsScreen() {
-  const { onLogout } = useContext(AuthContext);
+export function AuthNavigator() {
+  const { onLogin } = useContext(AuthContext);
+
   return (
     <SafeAreaView>
-      <Button title="Logout" onPress={onLogout} />
+      <Button title="Login" onPress={onLogin} />
     </SafeAreaView>
   );
 }
