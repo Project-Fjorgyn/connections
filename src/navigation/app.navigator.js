@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { theme } from '../theme';
 import { ObservationsScreen } from '../screens/observations.screen';
-import { ObserveScreen } from '../screens/observe.screen';
+import { ObserveNavigator } from './observe.navigator';
 import { SettingsScreen } from '../screens/settings.screen';
 
 const Tab = createBottomTabNavigator();
@@ -35,7 +35,7 @@ export function AppNavigator() {
           tabBarInactiveTintColor: theme.colors.ui[3],
         })}
       >
-        <Tab.Screen name="Observe" component={ObserveScreen} />
+        <Tab.Screen name="Observe" component={ObserveNavigator} />
         <Tab.Screen name="Observations" component={ObservationsScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
