@@ -26,10 +26,14 @@ const newData = () => ({
 export function ObservationContextProvider({ children }) {
   const [uid, setUid] = useState(newUid());
   const [data, setData] = useState(newData());
+  const [arthropod, setArthropod] = useState('coleoptera');
+  const [habitat, setHabitat] = useState('forest');
 
   const onNew = () => {
     setUid(newUid());
     setData(newData());
+    setArthropod('coleoptera');
+    setHabitat('forest');
   };
 
   const onSave = () => null;
@@ -44,10 +48,14 @@ export function ObservationContextProvider({ children }) {
       value={{
         uid,
         data,
+        arthropod,
+        habitat,
         onNew,
         onSave,
         onLoad,
         setData,
+        setArthropod,
+        setHabitat,
       }}
     >
       {children}

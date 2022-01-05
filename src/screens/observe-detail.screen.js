@@ -1,35 +1,30 @@
 import React, { useContext } from 'react';
-import { SafeAreaView, ScrollView, Button } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 
 import { ObservationContext } from '../context/observation.context';
 import { Title } from '../components/typography.components';
-import { SectionHeader } from '../components/containers.components';
+import {
+  SectionHeader,
+  ButtonRow,
+  FullScrollView,
+  SafeArea,
+} from '../components/containers.components';
 import { ClassificationSelector } from '../components/classification-selector.components';
+import { ActionButton } from '../components/buttons.components';
 
 export function ObserveDetailScreen({ navigation }) {
-  const { data, setData } = useContext(ObservationContext);
-
-  const setHabitat = (option) => {
-    data.habitat.classification = option.classification;
-    setData(data);
-  };
-
-  const setArthropod = (option) => {
-    data.arthropod.classification = option.classification;
-    data.arthropod.classificationLevel = option.classificationLevel;
-    setData(data);
-  };
+  const { arthropod, setArthropod, habitat, setHabitat, onNew } = useContext(ObservationContext);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeArea>
+      <FullScrollView>
         <SectionHeader>
           <Title>The Arthropod</Title>
         </SectionHeader>
         <ClassificationSelector
           kind="arthropods"
-          classification={data.arthropod.classification}
-          setClassification={setArthropod}
+          classification={arthropod}
+          setClassification={(option) => setArthropod(option.classification)}
         />
         <SectionHeader>
           <Title>The Plant</Title>
@@ -39,10 +34,28 @@ export function ObserveDetailScreen({ navigation }) {
         </SectionHeader>
         <ClassificationSelector
           kind="habitats"
-          classification={data.habitat.classification}
-          setClassification={setHabitat}
+          classification={habitat}
+          setClassification={(option) => setHabitat(option.classification)}
         />
-      </ScrollView>
-    </SafeAreaView>
+      </FullScrollView>
+      <ButtonRow>
+        <ActionButton
+          onPress={() => {
+            console.log(arthropod);
+            console.log(habitat);
+          }}
+        >
+          Save
+        </ActionButton>
+        <ActionButton
+          onPress={() => {
+            onNew();
+            navigation.navigate('Observations');
+          }}
+        >
+          Cancel
+        </ActionButton>
+      </ButtonRow>
+    </SafeArea>
   );
 }

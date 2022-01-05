@@ -7,19 +7,16 @@ const ARTHROPOD_CLASSIFICATIONS = [
   {
     title: 'Coleoptera - Beetles',
     classification: 'coleoptera',
-    classificationLevel: 'order',
     icon: require('../../assets/guide_icons/arthropods/coleoptera.png'),
   },
   {
     title: 'Formicidae - Ants',
     classification: 'formicidae',
-    classificationLevel: 'family',
     icon: require('../../assets/guide_icons/arthropods/formicidae.png'),
   },
   {
     title: 'Orthoptera - Grasshoppers/Crickets',
     classification: 'orthoptera',
-    classificationLevel: 'family',
     icon: require('../../assets/guide_icons/arthropods/orthoptera.png'),
   },
 ];
@@ -30,19 +27,16 @@ const HABITAT_CLASSIFICATIONS = [
   {
     title: 'Grassland/Meadow',
     classification: 'grassland',
-    classificationLevel: null,
     icon: require('../../assets/guide_icons/habitats/grassland.png'),
   },
   {
     title: 'Forest',
     classification: 'forest',
-    classificationLevel: null,
     icon: require('../../assets/guide_icons/habitats/forest.png'),
   },
   {
     title: 'Urban',
     classification: 'urban',
-    classificationLevel: null,
     icon: require('../../assets/guide_icons/habitats/urban.png'),
   },
 ];
@@ -55,9 +49,8 @@ export function ClassificationSelector({ kind, classification, setClassification
   }[kind];
 
   const [expanded, setExpanded] = useState(false);
-  const [selection, setSelection] = useState(
-    options.filter((option) => option.classification === classification)[0]
-  );
+
+  const selection = options.filter((option) => option.classification === classification)[0];
 
   const handlePress = () => setExpanded(!expanded);
 
@@ -70,14 +63,13 @@ export function ClassificationSelector({ kind, classification, setClassification
         onPress={handlePress}
       >
         {options
-          .filter((option) => option.classification !== selection.classification)
+          .filter((option) => option.classification !== classification)
           .map((option) => (
             <List.Item
               title={option.title}
               key={option.classification}
               left={() => <GuideIcon source={option.icon} />}
               onPress={() => {
-                setSelection(option);
                 setExpanded(false);
                 setClassification(option);
               }}
@@ -87,7 +79,3 @@ export function ClassificationSelector({ kind, classification, setClassification
     </List.Section>
   );
 }
-
-ClassificationSelector.defaultProps = {
-  kind: 'arthropods',
-};
