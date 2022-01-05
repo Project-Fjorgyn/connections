@@ -19,7 +19,7 @@ const newData = () => ({
     classification: 'dicotyledon',
   },
   habitat: {
-    classification: 'grassland',
+    classification: 'forest',
   },
 });
 
@@ -47,6 +47,7 @@ export function ObservationContextProvider({ children }) {
         onNew,
         onSave,
         onLoad,
+        setData,
       }}
     >
       {children}
