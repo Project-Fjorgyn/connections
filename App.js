@@ -1,15 +1,35 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from 'styled-components/native';
+import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
+import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 
+import { theme } from './src/theme';
 import { Navigation } from './src/navigation';
 import { AuthContextProvider } from './src/context/auth.context';
 
 export default function App() {
+  const [oswaldLoaded] = useOswald({
+    Oswald_400Regular,
+  });
+
+  const [latoLoaded] = useLato({
+    Lato_400Regular,
+  });
+
+  if (!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
+
   return (
-    <AuthContextProvider>
-      <Navigation />
+    <>
+      <ThemeProvider theme={theme}>
+        <AuthContextProvider>
+          <Navigation />
+        </AuthContextProvider>
+      </ThemeProvider>
       <StatusBar style="auto" />
-    </AuthContextProvider>
+    </>
   );
 }
