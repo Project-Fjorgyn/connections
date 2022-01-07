@@ -12,8 +12,8 @@ export const PhotoContainer = styled(View)`
 const Photo = styled(Image).attrs({
   resizeMode: 'contain',
 })`
-  max-height: ${(props) => props.theme.spacing.xl};
-  max-width: ${(props) => props.theme.spacing.xl};
+  height: ${(props) => props.theme.spacing.xl};
+  width: ${(props) => props.theme.spacing.xl};
 `;
 
 export function DeleteButton({ onPress, size }) {

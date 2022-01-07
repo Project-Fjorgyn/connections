@@ -57,7 +57,7 @@ export function ObservationContextProvider({ children }) {
     setData(data);
   };
 
-  const addPhoto = (kind) => {
+  const addPhoto = (kind, uri) => {
     let photos;
     let setter;
     if (kind === 'arthropod') {
@@ -73,9 +73,8 @@ export function ObservationContextProvider({ children }) {
       photos = flowerPhotos;
       setter = setFlowerPhotos;
     }
-    const source = mockImages[Math.floor(Math.random() * mockImages.length)];
     const puid = newUid();
-    setter([...photos, { uid: puid, source }]);
+    setter([...photos, { uid: puid, source: { uri } }]);
   };
 
   const removePhoto = (kind, photoUid) => {

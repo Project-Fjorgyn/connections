@@ -25,9 +25,11 @@ export const PhotoSection = styled(ScrollView).attrs({
 export const FullScrollView = styled(ScrollView)`
   flex: 1;
   flex-grow: 1;
+  background-color: ${(props) => props.theme.colors.ui[2]};
 `;
 
 export const SafeArea = styled(SafeAreaView)`
   flex: 1;
   flex-grow: 1;
+  background-color: ${(props) => props.theme.colors.ui[0]};
 `;

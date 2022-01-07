@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { List } from 'react-native-paper';
+import styled from 'styled-components/native';
 
 import { GuideIcon } from './guide-icons.components';
 
@@ -41,6 +42,10 @@ const HABITAT_CLASSIFICATIONS = [
   },
 ];
 
+const Accordion = styled(List.Accordion)`
+  background-color: ${(props) => props.theme.colors.ui[2]};
+`;
+
 export function ClassificationSelector({ kind, classification, setClassification }) {
   const options = {
     arthropods: ARTHROPOD_CLASSIFICATIONS,
@@ -56,7 +61,7 @@ export function ClassificationSelector({ kind, classification, setClassification
 
   return (
     <List.Section>
-      <List.Accordion
+      <Accordion
         title={selection.title}
         left={() => <GuideIcon source={selection.icon} />}
         expanded={expanded}
@@ -75,7 +80,7 @@ export function ClassificationSelector({ kind, classification, setClassification
               }}
             />
           ))}
-      </List.Accordion>
+      </Accordion>
     </List.Section>
   );
 }

@@ -23,7 +23,6 @@ export function ObserveDetailScreen({ navigation }) {
     leafPhotos,
     flowerPhotos,
     removePhoto,
-    addPhoto,
     habitat,
     setHabitat,
     onNew,
@@ -37,7 +36,13 @@ export function ObserveDetailScreen({ navigation }) {
             <Title>The Arthropod</Title>
           </SectionHeader>
           <PhotoSection>
-            <AddButton onPress={() => addPhoto('arthropod')} />
+            <AddButton
+              onPress={() =>
+                navigation.navigate('ObserveCamera', {
+                  kind: 'arthropod',
+                })
+              }
+            />
             {arthropodPhotos.map(({ source, uid }) => (
               <PhotoSelection
                 key={uid}
@@ -58,7 +63,13 @@ export function ObserveDetailScreen({ navigation }) {
           </SectionHeader>
           <SubTitle>Full Plant</SubTitle>
           <PhotoSection>
-            <AddButton onPress={() => addPhoto('plant')} />
+            <AddButton
+              onPress={() =>
+                navigation.navigate('ObserveCamera', {
+                  kind: 'plant',
+                })
+              }
+            />
             {plantPhotos.map(({ source, uid }) => (
               <PhotoSelection
                 key={uid}
@@ -69,14 +80,26 @@ export function ObserveDetailScreen({ navigation }) {
           </PhotoSection>
           <SubTitle>Leaves</SubTitle>
           <PhotoSection>
-            <AddButton onPress={() => addPhoto('leaf')} />
+            <AddButton
+              onPress={() =>
+                navigation.navigate('ObserveCamera', {
+                  kind: 'leaf',
+                })
+              }
+            />
             {leafPhotos.map(({ source, uid }) => (
               <PhotoSelection key={uid} source={source} onDelete={() => removePhoto('leaf', uid)} />
             ))}
           </PhotoSection>
           <SubTitle>Flower/Fruit</SubTitle>
           <PhotoSection>
-            <AddButton onPress={() => addPhoto('flower')} />
+            <AddButton
+              onPress={() =>
+                navigation.navigate('ObserveCamera', {
+                  kind: 'flower',
+                })
+              }
+            />
             {flowerPhotos.map(({ source, uid }) => (
               <PhotoSelection
                 key={uid}
