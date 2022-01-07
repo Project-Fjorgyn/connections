@@ -35,6 +35,9 @@ export function ObservationContextProvider({ children }) {
   const [arthropod, setArthropod] = useState('coleoptera');
   const [habitat, setHabitat] = useState('forest');
   const [arthropodPhotos, setArthropodPhotos] = useState([]);
+  const [plantPhotos, setPlantPhotos] = useState([]);
+  const [leafPhotos, setLeafPhotos] = useState([]);
+  const [flowerPhotos, setFlowerPhotos] = useState([]);
 
   const onNew = () => {
     setUid(newUid());
@@ -42,6 +45,9 @@ export function ObservationContextProvider({ children }) {
     setArthropod('coleoptera');
     setHabitat('forest');
     setArthropodPhotos([]);
+    setPlantPhotos([]);
+    setLeafPhotos([]);
+    setFlowerPhotos([]);
   };
 
   const onSave = () => null;
@@ -57,6 +63,15 @@ export function ObservationContextProvider({ children }) {
     if (kind === 'arthropod') {
       photos = arthropodPhotos;
       setter = setArthropodPhotos;
+    } else if (kind === 'plant') {
+      photos = plantPhotos;
+      setter = setPlantPhotos;
+    } else if (kind === 'leaf') {
+      photos = leafPhotos;
+      setter = setLeafPhotos;
+    } else if (kind === 'flower') {
+      photos = flowerPhotos;
+      setter = setFlowerPhotos;
     }
     const source = mockImages[Math.floor(Math.random() * mockImages.length)];
     const puid = newUid();
@@ -69,6 +84,15 @@ export function ObservationContextProvider({ children }) {
     if (kind === 'arthropod') {
       photos = arthropodPhotos;
       setter = setArthropodPhotos;
+    } else if (kind === 'plant') {
+      photos = plantPhotos;
+      setter = setPlantPhotos;
+    } else if (kind === 'leaf') {
+      photos = leafPhotos;
+      setter = setLeafPhotos;
+    } else if (kind === 'flower') {
+      photos = flowerPhotos;
+      setter = setFlowerPhotos;
     }
     setter(photos.filter(({ uid }) => uid !== photoUid));
   };
@@ -80,6 +104,9 @@ export function ObservationContextProvider({ children }) {
         data,
         arthropod,
         arthropodPhotos,
+        plantPhotos,
+        leafPhotos,
+        flowerPhotos,
         habitat,
         onNew,
         onSave,

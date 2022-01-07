@@ -7,3 +7,10 @@ export const Title = styled(Text)`
   margin: ${(props) => props.theme.spacing.sm};
   color: ${(props) => props.theme.colors.ui[2]};
 `;
+
+export const SubTitle = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.heading};
+  font-size: ${(props) => props.theme.fontSizes.h5};
+  margin: ${(props) => props.theme.spacing.sm};
+  color: ${(props) => props.theme.colors.ui[1]};
+`;
