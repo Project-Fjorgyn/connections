@@ -3,44 +3,11 @@ import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import { GuideIcon } from './guide-icons.components';
-
-const ARTHROPOD_CLASSIFICATIONS = [
-  {
-    title: 'Coleoptera - Beetles',
-    classification: 'coleoptera',
-    icon: require('../../assets/guide_icons/arthropods/coleoptera.png'),
-  },
-  {
-    title: 'Formicidae - Ants',
-    classification: 'formicidae',
-    icon: require('../../assets/guide_icons/arthropods/formicidae.png'),
-  },
-  {
-    title: 'Orthoptera - Grasshoppers/Crickets',
-    classification: 'orthoptera',
-    icon: require('../../assets/guide_icons/arthropods/orthoptera.png'),
-  },
-];
-
-const PLANT_CLASSIFICATIONS = [];
-
-const HABITAT_CLASSIFICATIONS = [
-  {
-    title: 'Grassland/Meadow',
-    classification: 'grassland',
-    icon: require('../../assets/guide_icons/habitats/grassland.png'),
-  },
-  {
-    title: 'Forest',
-    classification: 'forest',
-    icon: require('../../assets/guide_icons/habitats/forest.png'),
-  },
-  {
-    title: 'Urban',
-    classification: 'urban',
-    icon: require('../../assets/guide_icons/habitats/urban.png'),
-  },
-];
+import {
+  ARTHROPOD_CLASSIFICATIONS,
+  PLANT_CLASSIFICATIONS,
+  HABITAT_CLASSIFICATIONS,
+} from '../meta/classifications.meta';
 
 const Accordion = styled(List.Accordion)`
   background-color: ${(props) => props.theme.colors.ui[2]};
