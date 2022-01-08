@@ -22,3 +22,11 @@ export function AddButton({ onPress, size }) {
     </TouchableOpacity>
   );
 }
+
+export function UploadButton({ onPress, size }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Icon name="cloud-upload" color={theme.colors.ui[4]} size={size} />
+    </TouchableOpacity>
+  );
+}

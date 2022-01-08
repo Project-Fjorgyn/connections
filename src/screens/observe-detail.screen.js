@@ -26,6 +26,7 @@ export function ObserveDetailScreen({ navigation }) {
     habitat,
     setHabitat,
     onNew,
+    onSave,
   } = useContext(ObservationContext);
 
   return (
@@ -123,8 +124,10 @@ export function ObserveDetailScreen({ navigation }) {
       <ButtonRow>
         <ActionButton
           onPress={() => {
-            console.log(arthropod);
-            console.log(habitat);
+            if (arthropodPhotos.length) {
+              onSave();
+              navigation.navigate('Observations');
+            }
           }}
         >
           Save
@@ -132,7 +135,6 @@ export function ObserveDetailScreen({ navigation }) {
         <ActionButton
           onPress={() => {
             onNew();
-            navigation.navigate('Observations');
           }}
         >
           Cancel

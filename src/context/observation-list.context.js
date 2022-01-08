@@ -6,7 +6,7 @@ export function ObservationListContextProvider({ children }) {
   const [observations, setObservations] = useState([]);
 
   const addObservation = (observation) => {
-    setObservations([...observations, observation]);
+    setObservations([...observations.filter((o) => o.uid !== observation.uid), observation]);
   };
 
   const removeObservation = (uid) => {

@@ -1,37 +1,12 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+import { ObservationListContext } from './observation-list.context';
 
 export const ObservationContext = createContext();
 
-const mockImages = [
-  require('../../assets/guide_icons/arthropods/coleoptera.png'),
-  require('../../assets/guide_icons/arthropods/formicidae.png'),
-  require('../../assets/guide_icons/arthropods/orthoptera.png'),
-];
-
 const newUid = () => Math.floor(Date.now());
-const newData = () => ({
-  arthropod: {
-    images: [],
-    classificationLevel: 'order',
-    classification: 'coleoptera',
-  },
-  plant: {
-    images: {
-      full: [],
-      leaves: [],
-      reproductive: [],
-    },
-    classificationLevel: 'clade',
-    classification: 'dicotyledon',
-  },
-  habitat: {
-    classification: 'forest',
-  },
-});
 
 export function ObservationContextProvider({ children }) {
   const [uid, setUid] = useState(newUid());
-  const [data, setData] = useState(newData());
   const [arthropod, setArthropod] = useState('coleoptera');
   const [habitat, setHabitat] = useState('forest');
   const [arthropodPhotos, setArthropodPhotos] = useState([]);
@@ -39,9 +14,10 @@ export function ObservationContextProvider({ children }) {
   const [leafPhotos, setLeafPhotos] = useState([]);
   const [flowerPhotos, setFlowerPhotos] = useState([]);
 
+  const { addObservation } = useContext(ObservationListContext);
+
   const onNew = () => {
     setUid(newUid());
-    setData(newData());
     setArthropod('coleoptera');
     setHabitat('forest');
     setArthropodPhotos([]);
@@ -50,11 +26,36 @@ export function ObservationContextProvider({ children }) {
     setFlowerPhotos([]);
   };
 
-  const onSave = () => null;
+  const onSave = () => {
+    const observation = {
+      uid,
+      arthropod,
+      habitat,
+      arthropodPhotos,
+      plantPhotos,
+      leafPhotos,
+      flowerPhotos,
+    };
+    addObservation(observation);
+    onNew();
+  };
 
-  const onLoad = (uid, data) => {
+  const onLoad = ({
+    uid,
+    arthropod,
+    habitat,
+    arthropodPhotos,
+    plantPhotos,
+    leafPhotos,
+    flowerPhotos,
+  }) => {
     setUid(uid);
-    setData(data);
+    setArthropod(arthropod);
+    setHabitat(habitat);
+    setArthropodPhotos(arthropodPhotos);
+    setPlantPhotos(plantPhotos);
+    setLeafPhotos(leafPhotos);
+    setFlowerPhotos(flowerPhotos);
   };
 
   const addPhoto = (kind, uri) => {
@@ -100,7 +101,6 @@ export function ObservationContextProvider({ children }) {
     <ObservationContext.Provider
       value={{
         uid,
-        data,
         arthropod,
         arthropodPhotos,
         plantPhotos,
@@ -110,7 +110,6 @@ export function ObservationContextProvider({ children }) {
         onNew,
         onSave,
         onLoad,
-        setData,
         setArthropod,
         setHabitat,
         addPhoto,
