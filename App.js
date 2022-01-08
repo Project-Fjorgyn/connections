@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
+import { useFonts as usePTSerif, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 
 import { theme } from './src/theme';
 import { Navigation } from './src/navigation';
@@ -18,7 +19,11 @@ export default function App() {
     Lato_400Regular,
   });
 
-  if (!oswaldLoaded || !latoLoaded) {
+  const [ptLoaded] = usePTSerif({
+    PTSerif_400Regular,
+  });
+
+  if (!oswaldLoaded || !latoLoaded || !ptLoaded) {
     return null;
   }
 

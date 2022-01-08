@@ -14,3 +14,10 @@ export const SubTitle = styled(Text)`
   margin: ${(props) => props.theme.spacing.sm};
   color: ${(props) => props.theme.colors.ui[1]};
 `;
+
+export const Brand = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.brand};
+  font-size: ${(props) => props.theme.fontSizes.h1};
+  margin: ${(props) => props.theme.spacing.sm};
+  color: ${(props) => props.theme.colors.ui[2]};
+`;
