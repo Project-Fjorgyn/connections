@@ -1,10 +1,14 @@
 import React from 'react';
-import { SafeAreaView, Button } from 'react-native';
+
+import { AccountBackground } from '../components/account-background.components';
+import { Brand } from '../components/typography.components';
+import { ActionButton } from '../components/buttons.components';
 
 export function TitleScreen({ navigation }) {
   return (
-    <SafeAreaView>
-      <Button title="Go To Login" onPress={() => navigation.navigate('Login')} />
-    </SafeAreaView>
+    <AccountBackground>
+      <Brand>Buggy</Brand>
+      <ActionButton onPress={() => navigation.navigate('Login')}>Let's Go!</ActionButton>
+    </AccountBackground>
   );
 }
