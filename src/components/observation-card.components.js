@@ -21,7 +21,7 @@ const Spacer = styled(View)`
   flex: 1;
 `;
 
-export function ObservationCard({ habitat, arthropod, arthropodPhotos }) {
+export function ObservationCard({ habitat, arthropod, arthropodPhotos, uploadObservation }) {
   return (
     <PaddedCard>
       <Card.Cover source={{ uri: arthropodPhotos[0].source.uri }} />
@@ -41,7 +41,7 @@ export function ObservationCard({ habitat, arthropod, arthropodPhotos }) {
           }
         />
         <Spacer />
-        <UploadButton size={32} />
+        <UploadButton size={32} onPress={uploadObservation} />
       </IconRow>
     </PaddedCard>
   );
